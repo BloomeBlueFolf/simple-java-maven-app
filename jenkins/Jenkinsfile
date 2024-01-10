@@ -2,23 +2,31 @@ pipeline {
 
     agent any
 
-        def valuesFromFile = readFile './values.txt'
-        def lines = valuesFromFile.split('\n')
-        def keyValueMap = [:]
-    
-        lines.each { line ->
-            def keyValue = line.split(':')
-            if(keyValue.size() == 2){
-                def key = keyValue[0].trim()
-                def value = keyValue[1].trim()
-                keyValue[key] = value
-            }
-        }
-    
-        def prename = keyValueMap.prename
-        def lastname = keyValueMap.lastname
+    environment {
+        def prename = null
+        def lastname = null
+    }
     
     stages {
+        stage('Assign variables') {
+            steps {
+                def valuesFromFile = readFile './values.txt'
+                def lines = valuesFromFile.split('\n')
+                def keyValueMap = [:]
+    
+                lines.each { line ->
+                    def keyValue = line.split(':')
+                    if(keyValue.size() == 2){
+                        def key = keyValue[0].trim()
+                        def value = keyValue[1].trim()
+                        keyValue[key] = value
+                    }
+                }
+    
+                env.prename = keyValueMap.prename
+                env.lastname = keyValueMap.lastname
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
