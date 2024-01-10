@@ -1,5 +1,7 @@
 pipeline {
-    
+
+    agent any
+
     def valuesFromFile = readFile './values.txt'
     def lines = valuesFromFile.split('\n')
     def keyValueMap = [:]
@@ -15,8 +17,6 @@ pipeline {
 
     def prename = keyValueMap.prename
     def lastname = keyValueMap.lastname
-
-    agent any
     
     stages {
         stage('Build') {
