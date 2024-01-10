@@ -11,7 +11,7 @@ pipeline {
         stage('Assign variables') {
             steps {
                 script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https:\github.com\BloomeBlueFolf\simple-java-maven-app.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https:/github.com/BloomeBlueFolf/simple-java-maven-app.git']]])
                     
                     def valuesFromFile = readFile '/jenkins/values.txt'
                     def lines = valuesFromFile.split('\n')
