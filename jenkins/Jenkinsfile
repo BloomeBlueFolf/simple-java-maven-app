@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     
-                    def valuesFromFile = readFile 'C:\Users\FlorianEg\OneDrive - MaibornWolff GmbH\Desktop\values.txt'
+                    def valuesFromFile = readFile 'C:/Users/FlorianEg/OneDrive - MaibornWolff GmbH/Desktop/values.txt'
                     def lines = valuesFromFile.split('\n')
                     def keyValueMap = [:]
         
