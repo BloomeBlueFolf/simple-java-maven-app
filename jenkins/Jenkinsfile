@@ -5,6 +5,7 @@ pipeline {
     environment {
         def valuesFromFile = readFile './values.txt'
         def lines = valuesFromFile.split('\n')
+    }
         def keyValueMap = [:]
     
         lines.each { line ->
@@ -18,7 +19,6 @@ pipeline {
     
         def prename = keyValueMap.prename
         def lastname = keyValueMap.lastname
-    }
     
     stages {
         stage('Build') {
