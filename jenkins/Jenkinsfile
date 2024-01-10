@@ -2,10 +2,8 @@ pipeline {
 
     agent any
 
-    environment {
         def valuesFromFile = readFile './values.txt'
         def lines = valuesFromFile.split('\n')
-    }
         def keyValueMap = [:]
     
         lines.each { line ->
