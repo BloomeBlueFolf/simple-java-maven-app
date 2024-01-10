@@ -1,10 +1,23 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.0'
-            args '-v /root/.m2:/root/.m2'
+    
+    def valuesFromFile = readFile './values.txt'
+    def lines = valuesFromFile.split('\n')
+    def keyValueMap = [:]
+
+    lines.each { line ->
+        def keyValue = line.split(':')
+        if(keyValue.size() == 2){
+            def key = keyValue[0].trim()
+            def value = keyValue[1].trim()
+            keyValue[key] = value
         }
     }
+
+    def prename = keyValueMap.prename
+    def lastname = keyValueMap.lastname
+
+    agent any
+    
     stages {
         stage('Build') {
             steps {
@@ -14,16 +27,15 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
         }
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
+            }
+        }
+        stage('Inform') {
+            steps {
+                echo 'Pipeline build for ${prename} ${lastname}!'
             }
         }
     }
