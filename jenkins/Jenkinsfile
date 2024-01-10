@@ -11,7 +11,7 @@ pipeline {
         stage('Assign variables') {
             steps {
                 script {
-                    def valuesFromFile = readFile './values.txt'
+                    def valuesFromFile = readFile 'https://github.com/BloomeBlueFolf/simple-java-maven-app/blob/master/jenkins/values.txt'
                     def lines = valuesFromFile.split('\n')
                     def keyValueMap = [:]
         
