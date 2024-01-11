@@ -3,8 +3,8 @@ pipeline {
     agent any
 
     environment {
-        def prename = null
-        def lastname = null
+        def prename = kein
+        def lastname = name
     }
     
     stages {
