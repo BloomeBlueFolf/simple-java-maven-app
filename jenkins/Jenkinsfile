@@ -21,15 +21,17 @@ pipeline {
                         if(keyValue.size() == 2){
                             def key = keyValue[0].trim()
                             def value = keyValue[1].trim()
-                            keyValue[key] = value
+                            keyValueMap[key] = value
                         }
                     }
+                    env.prename = keyValueMap.prename
+                    env.lastname = keyValueMap.lastname
                 }
             }
         }
         stage('Inform') {
             steps {
-                echo 'Pipeline'
+                echo 'Pipeline build for ${prename} ${lastname}!'
             }
         }
     }
