@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        def prename = 'kein'
+        def prename = 'no'
         def lastname = 'name'
     }
     
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     
-                    def valuesFromFile = readFile 'C:/Users/FlorianEg/OneDrive - MaibornWolff GmbH/Desktop/values.txt'
+                    def valuesFromFile = readFile '<path to your values file>'
                     def lines = valuesFromFile.split('\n')
                     def keyValueMap = [:]
         
