@@ -24,9 +24,6 @@ pipeline {
                             keyValue[key] = value
                         }
                     }
-        
-                    env.prename = keyValueMap.prename
-                    env.lastname = keyValueMap.lastname
                 }
             }
         }
