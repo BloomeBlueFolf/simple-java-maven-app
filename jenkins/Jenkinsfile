@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Inform') {
             steps {
-                echo 'Pipeline build for ${prename} ${lastname}!'
+                echo 'Pipeline build for ${env.prename} ${env.lastname}!'
             }
         }
     }
