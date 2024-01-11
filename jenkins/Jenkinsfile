@@ -24,14 +24,14 @@ pipeline {
                             keyValueMap[key] = value
                         }
                     }
-                    env.prename = keyValueMap.prename
-                    env.lastname = keyValueMap.lastname
+                    prename = keyValueMap.prename
+                    lastname = keyValueMap.lastname
                 }
             }
         }
         stage('Inform') {
             steps {
-                echo "Pipeline build for ${env.prename} ${env.lastname}!"
+                echo "Pipeline build for ${prename} ${lastname}!"
             }
         }
     }
